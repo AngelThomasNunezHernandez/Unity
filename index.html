@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unity - Creando Mundos Juntos</title>
     <style>
+        /* --- ESTILOS GENERALES --- */
         * {
             margin: 0;
             padding: 0;
@@ -18,15 +19,16 @@
             overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* --- HERO SECTION --- */
         .hero {
-            height: 100vh;
+            height: 100vh; /* Ocupa toda la altura de la pantalla */
             display: flex;
             align-items: center;
             justify-content: center;
             background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
             position: relative;
             overflow: hidden;
+            padding: 0 20px; /* Evita que el texto toque los bordes en móviles */
         }
 
         .hero::before {
@@ -47,6 +49,7 @@
             text-align: center;
             z-index: 2;
             animation: fadeIn 2s ease-in;
+            max-width: 800px;
         }
 
         @keyframes fadeIn {
@@ -56,6 +59,7 @@
 
         .logo {
             width: 250px;
+            max-width: 80%; /* Adaptable a móviles */
             height: auto;
             margin: 0 auto 30px;
             animation: float 3s ease-in-out infinite;
@@ -93,7 +97,7 @@
             60% { transform: translateX(-50%) translateY(-5px); }
         }
 
-        /* Navigation */
+        /* --- NAVEGACIÓN --- */
         nav {
             position: fixed;
             top: 0;
@@ -115,6 +119,7 @@
             display: flex;
             justify-content: center;
             gap: 40px;
+            flex-wrap: wrap; /* Permite que el menú baje si no cabe */
         }
 
         nav a {
@@ -140,7 +145,7 @@
             width: 100%;
         }
 
-        /* Sections */
+        /* --- SECCIONES GENERALES --- */
         section {
             min-height: 100vh;
             padding: 100px 50px;
@@ -190,9 +195,11 @@
             color: #ccc;
         }
 
+        /* --- GRID RESPONSIVO (Tarjetas) --- */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            /* Se adapta automáticamente: mínimo 280px de ancho por tarjeta */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px;
             margin-top: 50px;
         }
@@ -225,10 +232,11 @@
             letter-spacing: 2px;
         }
 
-        /* Videos Section */
+        /* --- VIDEOS GRID --- */
         .videos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            /* Se adapta automáticamente */
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 50px;
         }
@@ -249,7 +257,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
             height: 0;
             overflow: hidden;
             border-radius: 10px;
@@ -276,7 +284,6 @@
             line-height: 1.6;
         }
 
-        /* Footer */
         footer {
             background: #111;
             padding: 40px;
@@ -284,12 +291,31 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
+        /* --- MEDIA QUERIES (ADAPTACIÓN A MÓVILES) --- */
         @media (max-width: 768px) {
+            /* Textos más pequeños */
             .hero h1 { font-size: 2.5rem; }
-            .hero p { font-size: 1.2rem; }
-            h2 { font-size: 2rem; }
-            section { padding: 80px 20px; }
-            nav ul { flex-direction: column; gap: 20px; }
+            .hero p { font-size: 1.1rem; }
+            h2 { font-size: 2.2rem; }
+            
+            /* Menos relleno en secciones */
+            section { padding: 60px 20px; }
+            
+            /* Ajuste de menú */
+            nav ul { 
+                gap: 15px; 
+                padding: 0 10px;
+            }
+            nav a { font-size: 0.9rem; }
+            
+            /* Ajuste de cajas de contenido */
+            .content-box { padding: 30px; }
+            .content-box h3 { font-size: 1.5rem; }
+            
+            /* Grid se vuelve columna única si es muy estrecho */
+            .grid, .videos-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
@@ -306,7 +332,9 @@
 
     <section class="hero" id="inicio">
         <div class="hero-content">
-            <img src="unity-logo.png" alt="Unity Logo" class="logo">
+            <svg class="logo" viewBox="0 0 100 100" fill="white">
+                <path d="M50 0 L100 25 L100 75 L50 100 L0 75 L0 25 Z" opacity="0.8"/>
+            </svg>
             <h1>Unity</h1>
             <p>El mundo es un mejor lugar con más creadores en él</p>
             <div class="scroll-indicator">
@@ -325,11 +353,11 @@
             <h2>¿Quiénes Somos?</h2>
             <div class="content-box">
                 <h3>Nuestra Historia</h3>
-                <p>Unity es la plataforma líder mundial para crear y operar contenido 3D en tiempo real. Somos más que una empresa de tecnología: somos una comunidad global de creadores, innovadores y visionarios que creen en el poder de la creatividad para transformar el mundo.</p>
+                <p>Unity es la plataforma líder mundial para crear y operar contenido 3D en tiempo real. Somos más que una empresa de tecnología: somos una comunidad global de creadores.</p>
             </div>
             <div class="content-box">
                 <h3>¿Qué Hacemos?</h3>
-                <p>Proporcionamos herramientas profesionales para desarrollar videojuegos, experiencias inmersivas, simulaciones arquitectónicas, aplicaciones de realidad virtual y aumentada, y mucho más. Democratizamos la creación de contenido 3D, haciendo que sea accesible para todos, desde estudiantes hasta grandes estudios.</p>
+                <p>Democratizamos la creación de contenido 3D. Proporcionamos herramientas para videojuegos, cine, arquitectura y más, accesibles para todos.</p>
             </div>
         </div>
     </section>
@@ -339,34 +367,19 @@
             <h2>¿A Quién Nos Dirigimos?</h2>
             <div class="grid">
                 <div class="card">
-                    <div class="icon">Desarrolladores</div>
-                    <h4>Desarrolladores de Videojuegos</h4>
-                    <p>Desde indies hasta AAA, creando experiencias inolvidables</p>
+                    <div class="icon">Desarrollo</div>
+                    <h4>Game Devs</h4>
+                    <p>Indies y estudios AAA creando experiencias inolvidables.</p>
                 </div>
                 <div class="card">
-                    <div class="icon">Arquitectura</div>
-                    <h4>Arquitectos y Diseñadores</h4>
-                    <p>Visualizando proyectos con precisión fotorealista</p>
+                    <div class="icon">Diseño</div>
+                    <h4>Arquitectos</h4>
+                    <p>Visualizando proyectos con precisión fotorealista.</p>
                 </div>
                 <div class="card">
-                    <div class="icon">Educación</div>
-                    <h4>Estudiantes y Educadores</h4>
-                    <p>Aprendiendo y enseñando las habilidades del futuro</p>
-                </div>
-                <div class="card">
-                    <div class="icon">Creatividad</div>
-                    <h4>Creadores de Contenido</h4>
-                    <p>Produciendo animaciones y experiencias interactivas</p>
-                </div>
-                <div class="card">
-                    <div class="icon">Industria</div>
-                    <h4>Empresas</h4>
-                    <p>Innovando con simulaciones y visualizaciones</p>
-                </div>
-                <div class="card">
-                    <div class="icon">Innovación</div>
-                    <h4>Soñadores</h4>
-                    <p>Cualquiera con una visión y la pasión para hacerla realidad</p>
+                    <div class="icon">Futuro</div>
+                    <h4>Educadores</h4>
+                    <p>Enseñando las habilidades tecnológicas del mañana.</p>
                 </div>
             </div>
         </div>
@@ -378,26 +391,24 @@
             <div class="videos-grid">
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/NN-9SQXoi50" title="Cuphead Launch Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/NN-9SQXoi50" title="Cuphead" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h4>Cuphead</h4>
-                    <p>Por <strong>Studio MDHR</strong>. Animación 2D clásica dibujada a mano, demostrando la flexibilidad artística del motor.</p>
+                    <p>Por <strong>Studio MDHR</strong>. Arte dibujado a mano.</p>
                 </div>
-
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/UAO2urG23S4?list=RDUAO2urG23S4" title="Hollow Knight - Release Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/UAO2urG23S4" title="Hollow Knight" frameborder="0" allowfullscreen></iframe>
                     </div>
                     <h4>Hollow Knight</h4>
-                    <p>Por <strong>Team Cherry</strong>. Un vasto mundo interconectado creado por un equipo pequeño gracias a la eficiencia de Unity.</p>
+                    <p>Por <strong>Team Cherry</strong>. Un vasto mundo indie.</p>
                 </div>
-
                 <div class="video-card">
                     <div class="video-wrapper">
-                        <iframe src="https://www.youtube.com/embed/cklw-Yu3moE" title="Ori and the Blind Forest Trailer" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                        <iframe src="https://www.youtube.com/embed/cklw-Yu3moE" title="Ori" frameborder="0" allowfullscreen></iframe>
                     </div>
-                    <h4>Ori and the Blind Forest</h4>
-                    <p>Por <strong>Moon Studios</strong>. Plataformas cinemáticas y atmósfera visual que llevan al límite el rendimiento gráfico de Unity.</p>
+                    <h4>Ori</h4>
+                    <p>Por <strong>Moon Studios</strong>. Atmósfera visual única.</p>
                 </div>
             </div>
         </div>
@@ -405,52 +416,30 @@
 
     <section id="valores">
         <div class="container">
-            <h2>Nuestra Visión y Misión</h2>
-            <div class="content-box">
-                <h3>Visión</h3>
-                <p>Ser la plataforma que empodera a la próxima generación de creadores para construir el futuro del entretenimiento, la educación y la industria. Imaginamos un mundo donde cualquier persona pueda dar vida a sus ideas más audaces.</p>
-            </div>
-            <div class="content-box">
-                <h3>Misión</h3>
-                <p>Democratizar el desarrollo de contenido 3D en tiempo real, proporcionando herramientas accesibles, potentes y versátiles que permitan a creadores de todos los niveles transformar sus visiones en realidad.</p>
-            </div>
-            
-            <h2 style="margin-top: 80px;">Principios Éticos</h2>
+            <h2>Nuestros Valores</h2>
             <div class="grid">
                 <div class="card">
                     <h4>Inclusión</h4>
-                    <p>Creemos en la diversidad y en crear herramientas accesibles para todos</p>
+                    <p>Herramientas para todos.</p>
                 </div>
                 <div class="card">
                     <h4>Innovación</h4>
-                    <p>Impulsamos la creatividad y el pensamiento disruptivo</p>
-                </div>
-                <div class="card">
-                    <h4>Sostenibilidad</h4>
-                    <p>Comprometidos con prácticas responsables y sostenibles</p>
-                </div>
-                <div class="card">
-                    <h4>Transparencia</h4>
-                    <p>Operamos con honestidad e integridad en todo momento</p>
-                </div>
-                <div class="card">
-                    <h4>Excelencia</h4>
-                    <p>Buscamos la calidad en cada producto y servicio</p>
+                    <p>Impulsamos la creatividad.</p>
                 </div>
                 <div class="card">
                     <h4>Comunidad</h4>
-                    <p>Fomentamos la colaboración y el apoyo mutuo</p>
+                    <p>Crecemos juntos.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2025 Unity Technologies. El mundo es un mejor lugar con más creadores en él.</p>
+        <p>&copy; 2025 Unity Technologies.</p>
     </footer>
 
     <script>
-        // Navbar scroll effect
+        // Efecto Navbar
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
@@ -460,21 +449,15 @@
             }
         });
 
-        // Smooth scrolling
+        // Scroll Suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
-        };
-
+        // Animación de aparición (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -482,9 +465,9 @@
                     entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.content-box, .card').forEach(el => {
+        document.querySelectorAll('.content-box, .card, .video-card').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'all 0.6s ease-out';

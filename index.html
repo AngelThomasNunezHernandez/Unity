@@ -21,14 +21,14 @@
 
         /* --- HERO SECTION --- */
         .hero {
-            height: 100vh; /* Ocupa toda la altura de la pantalla */
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             background: radial-gradient(ellipse at center, #1a1a1a 0%, #000 70%);
             position: relative;
             overflow: hidden;
-            padding: 0 20px; /* Evita que el texto toque los bordes en móviles */
+            padding: 0 20px;
         }
 
         .hero::before {
@@ -50,6 +50,7 @@
             z-index: 2;
             animation: fadeIn 2s ease-in;
             max-width: 800px;
+            width: 100%;
         }
 
         @keyframes fadeIn {
@@ -57,13 +58,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* Estilo de la imagen del logo */
         .logo {
-            width: 250px;
-            max-width: 80%; /* Adaptable a móviles */
+            width: 250px;       /* Tamaño base */
+            max-width: 60%;     /* En celulares no pasará del 60% del ancho */
             height: auto;
             margin: 0 auto 30px;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.3));
+            display: block;
         }
 
         @keyframes float {
@@ -119,7 +122,7 @@
             display: flex;
             justify-content: center;
             gap: 40px;
-            flex-wrap: wrap; /* Permite que el menú baje si no cabe */
+            flex-wrap: wrap;
         }
 
         nav a {
@@ -195,10 +198,9 @@
             color: #ccc;
         }
 
-        /* --- GRID RESPONSIVO (Tarjetas) --- */
+        /* --- GRID RESPONSIVO --- */
         .grid {
             display: grid;
-            /* Se adapta automáticamente: mínimo 280px de ancho por tarjeta */
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
             gap: 30px;
             margin-top: 50px;
@@ -235,7 +237,6 @@
         /* --- VIDEOS GRID --- */
         .videos-grid {
             display: grid;
-            /* Se adapta automáticamente */
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 50px;
@@ -257,7 +258,7 @@
 
         .video-wrapper {
             position: relative;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            padding-bottom: 56.25%;
             height: 0;
             overflow: hidden;
             border-radius: 10px;
@@ -293,26 +294,18 @@
 
         /* --- MEDIA QUERIES (ADAPTACIÓN A MÓVILES) --- */
         @media (max-width: 768px) {
-            /* Textos más pequeños */
             .hero h1 { font-size: 2.5rem; }
             .hero p { font-size: 1.1rem; }
             h2 { font-size: 2.2rem; }
             
-            /* Menos relleno en secciones */
             section { padding: 60px 20px; }
             
-            /* Ajuste de menú */
-            nav ul { 
-                gap: 15px; 
-                padding: 0 10px;
-            }
+            nav ul { gap: 15px; padding: 0 10px; }
             nav a { font-size: 0.9rem; }
             
-            /* Ajuste de cajas de contenido */
             .content-box { padding: 30px; }
             .content-box h3 { font-size: 1.5rem; }
             
-            /* Grid se vuelve columna única si es muy estrecho */
             .grid, .videos-grid {
                 grid-template-columns: 1fr;
             }
@@ -332,7 +325,8 @@
 
     <section class="hero" id="inicio">
         <div class="hero-content">
-           <img src="unity-logo.png" alt="Unity Logo" class="logo">
+            <img src="unity-logo.png" alt="Unity Logo" class="logo">
+            
             <h1>Unity</h1>
             <p>El mundo es un mejor lugar con más creadores en él</p>
             <div class="scroll-indicator">
@@ -437,7 +431,6 @@
     </footer>
 
     <script>
-        // Efecto Navbar
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 100) {
@@ -447,7 +440,6 @@
             }
         });
 
-        // Scroll Suave
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -455,7 +447,6 @@
             });
         });
 
-        // Animación de aparición (Intersection Observer)
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -474,4 +465,3 @@
     </script>
 </body>
 </html>
-
